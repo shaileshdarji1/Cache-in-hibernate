@@ -4,6 +4,7 @@ import com.hibernate.cache.entity.Course;
 import com.hibernate.cache.service.CourseService;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,9 @@ public class CourseController {
 
     @Autowired
     CourseService courseService;
+
     @GetMapping("/all")
+    @Cacheable
     public List<Course> getCourses(){
         return courseService.getCourses();
     }
